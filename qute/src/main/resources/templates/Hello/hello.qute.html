@@ -2,9 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Hello {name ?: "Qute"}</title>
+    <title>Hello</title>
 </head>
 <body>
-<h1>Hello <b>{name ?: "Qute"}</b></h1>
+<form method="post" action="/hello">
+    <label for="name">Name</label>
+    <input id="name" type="text" name="name">
+    <button type="submit">Say Hello</button>
+</form>
+
+<p>{greeting}</p>
 </body>
 </html>

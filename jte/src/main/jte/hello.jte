@@ -1,3 +1,19 @@
-@param String name
+@param String greeting
 
-<h1>Hello ${name}!</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello</title>
+</head>
+<body>
+<form method="post" action="/hello">
+    <label for="name">Name</label>
+    <input id="name" type="text" name="name">
+    <button type="submit">Say Hello</button>
+</form>
+
+<p>${greeting}</p>
+</body>
+</html>
+

@@ -10,7 +10,14 @@
 
 <h:body>
     <f:view>
-        <h:outputText value="#{greeter.hello()}" />
+        <h:form>
+            <h:inputText id="name" value="#{helloBean.name}"/>
+            <h:commandButton value="Welcome Me">
+                <f:ajax execute="name" render="output"/>
+            </h:commandButton>
+        </h:form>
+
+        <p><h:outputText id="output" value="#{helloBean.sayHello()}"/></p>
     </f:view>
 </h:body>
 </html>
