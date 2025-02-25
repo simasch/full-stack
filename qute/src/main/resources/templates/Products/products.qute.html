@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Product Management</title>
+</head>
+<body>
+<h1>Products</h1>
+
+{#if message != null}
+    <div class="alert">
+        {message}
+    </div>
+{/if}
+
+<form method="post" action="/products" enctype="application/x-www-form-urlencoded">
+    {#if product.id != null}
+        <input type="hidden" name="id" value="{product.id}">
+    {/if}
+
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" value="{product.name}" required>
+    </div>
+
+    <div class="form-group">
+        <label for="description">Description</label>
+        <textarea id="description" name="description">{product.description}</textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="price">Price</label>
+        <input type="number" id="price" name="price" value="{product.price}" step="0.01">
+    </div>
+
+    <div class="form-group">
+        <label for="stock">Stock</label>
+        <input type="number" id="stock" name="stock" value="{product.stock}">
+    </div>
+
+    <div class="form-buttons">
+        <button type="submit">Save</button>
+        {#if product.id != null}
+            <a href="/products">Cancel</a>
+        {/if}
+    </div>
+</form>
+
+<table class="product-table">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Stock</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    {#for prod in products}
+        <tr>
+            <td>{prod.name}</td>
+            <td>{prod.description}</td>
+            <td>${prod.price}</td>
+            <td>{prod.stock}</td>
+            <td>
+                <a href="/products/edit/{prod.id}">Edit</a>
+            </td>
+        </tr>
+    {/for}
+    </tbody>
+</table>
+</body>
+</html>

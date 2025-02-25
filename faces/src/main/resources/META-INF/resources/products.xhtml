@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Product Management</title>
+</h:head>
+<h:body>
+    <h:form id="productForm">
+        <p:panel header="Products">
+            <p:messages id="messages" showDetail="true" closable="true"/>
+
+            <h:panelGrid columns="2">
+                <p:outputLabel for="name" value="Name:"/>
+                <p:inputText id="name" value="#{productBean.product.name}" required="true"/>
+
+                <p:outputLabel for="description" value="Description:"/>
+                <p:inputTextarea id="description" value="#{productBean.product.description}"/>
+
+                <p:outputLabel for="price" value="Price:"/>
+                <p:inputNumber id="price" value="#{productBean.product.price}" symbol="$" symbolPosition="p"/>
+
+                <p:outputLabel for="stock" value="Stock:"/>
+                <p:inputNumber id="stock" value="#{productBean.product.stock}"/>
+
+                <f:facet name="footer">
+                    <p:commandButton value="Save" action="#{productBean.saveProduct()}"
+                                     update="productForm, productTable"/>
+                    <p:commandButton value="Cancel" action="#{productBean.cancelEdit()}"
+                                     update="productForm" rendered="#{productBean.editMode}"/>
+                </f:facet>
+            </h:panelGrid>
+
+            <p:dataTable id="productTable" value="#{productBean.products}" var="product">
+                <p:column headerText="Name">
+                    <h:outputText value="#{product.name}"/>
+                </p:column>
+                <p:column headerText="Description">
+                    <h:outputText value="#{product.description}"/>
+                </p:column>
+                <p:column headerText="Price">
+                    <h:outputText value="#{product.price}">
+                        <f:convertNumber type="currency"/>
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="Stock">
+                    <h:outputText value="#{product.stock}"/>
+                </p:column>
+                <p:column headerText="Actions">
+                    <p:commandButton icon="pi pi-pencil" action="#{productBean.editProduct(product)}"
+                                     update="productForm" process="@this" immediate="true"/>
+                </p:column>
+            </p:dataTable>
+        </p:panel>
+    </h:form>
+</h:body>
+</html>

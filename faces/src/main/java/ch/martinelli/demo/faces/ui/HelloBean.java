@@ -1,4 +1,4 @@
-package ch.martinelli.demo;
+package ch.martinelli.demo.faces.ui;
 
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Named;
