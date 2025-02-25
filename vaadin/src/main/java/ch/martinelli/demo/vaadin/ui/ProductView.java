@@ -55,25 +55,15 @@ public class ProductView extends VerticalLayout {
 
         grid.setHeightFull();
 
-        grid.addColumn(Product::getName)
-                .setHeader("Name").setAutoWidth(true)
-                .setSortable(true).setSortProperty("name");
-        grid.addColumn(Product::getDescription)
-                .setHeader("Description").setAutoWidth(true)
-                .setSortable(true).setSortProperty("description");
-        grid.addColumn(Product::getPrice)
-                .setHeader("Price").setAutoWidth(true).setTextAlign(ColumnTextAlign.END)
-                .setSortable(true).setSortProperty("price");
-        grid.addColumn(Product::getStock)
-                .setHeader("Stock").setAutoWidth(true).setTextAlign(ColumnTextAlign.END)
-                .setSortable(true).setSortProperty("stock");
+        grid.addColumn(Product::getName).setHeader("Name").setAutoWidth(true).setSortable(true).setSortProperty("name");
+        grid.addColumn(Product::getDescription).setHeader("Description").setAutoWidth(true).setSortable(true).setSortProperty("description");
+        grid.addColumn(Product::getPrice).setHeader("Price").setAutoWidth(true).setTextAlign(ColumnTextAlign.END).setSortable(true).setSortProperty("price");
+        grid.addColumn(Product::getStock).setHeader("Stock").setAutoWidth(true).setTextAlign(ColumnTextAlign.END).setSortable(true).setSortProperty("stock");
 
         grid.addItemClickListener(e -> editProduct(e.getItem()));
 
-        // Add components to layout
         add(new H2("Products"), form, new HorizontalLayout(saveButton, cancelButton), grid);
 
-        // Initialize data
         updateList();
     }
 
