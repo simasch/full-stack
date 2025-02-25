@@ -32,7 +32,7 @@
                 </f:facet>
             </h:panelGrid>
 
-            <p:dataTable id="productTable" value="#{productBean.products}" var="product">
+            <p:dataTable id="productTable" value="#{productBean.lazyProductDataModel}" var="product" virtualScroll="true" scrollRows="20" scrollable="true" scrollHeight="400">
                 <p:column headerText="Name">
                     <h:outputText value="#{product.name}"/>
                 </p:column>

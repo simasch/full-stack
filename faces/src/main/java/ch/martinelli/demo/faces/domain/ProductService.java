@@ -28,4 +28,8 @@ public class ProductService implements Serializable {
                 .limit(limit);
     }
 
+    public int count() {
+        return products.size();
+    }
+
 }
