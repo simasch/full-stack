@@ -1,6 +1,7 @@
 @import ch.martinelli.demo.jte.domain.Product
+@import org.springframework.data.domain.Page
 
-@param java.util.List<Product> products
+@param Page<Product> products
 @param Product product
 @param String message = null
 
@@ -9,6 +10,7 @@
 <head>
     <title>Product Management</title>
     <link rel="stylesheet" href="/css/main.css">
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
 </head>
 <body>
 <h1>Products</h1>
@@ -63,17 +65,7 @@
     </tr>
     </thead>
     <tbody>
-    @for(Product prod : products)
-        <tr>
-            <td>${prod.getName()}</td>
-            <td>${prod.getDescription()}</td>
-            <td>$${String.format("%.2f", prod.getPrice())}</td>
-            <td>${prod.getStock()}</td>
-            <td>
-                <a href="/products/edit/${prod.getId()}">Edit</a>
-            </td>
-        </tr>
-    @endfor
+        @template.fragments.product-rows(products = products)
     </tbody>
 </table>
 </body>

@@ -1,11 +1,13 @@
 package ch.martinelli.demo.jte.domain;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Stream;
 
 @Service
 public class ProductService implements Serializable {
@@ -22,10 +24,10 @@ public class ProductService implements Serializable {
                 });
     }
 
-    public Stream<Product> findAll(int offset, int limit) {
-        return products.stream()
-                .skip(offset)
-                .limit(limit);
+    public Page<Product> findAll(Pageable pageable) {
+        return new PageImpl<>(products.stream()
+                .skip(pageable.getOffset())
+                .limit(pageable.getPageSize()).toList(), Pageable.ofSize(pageable.getPageSize()), products.size());
     }
 
     public Product findById(Long id) {
