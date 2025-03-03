@@ -20,13 +20,24 @@ public class Products {
 
     @CheckedTemplate
     public static class Templates {
+
         public static native TemplateInstance products(List<Product> products, Product product, String message);
+
+        public static native TemplateInstance product_rows(List<Product> products, int nextPage, int lastIndex);
     }
 
     @GET
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance listProducts(@QueryParam("message") String message) {
-        return Templates.products(service.findAll(0, 1000).toList(), new Product(), message);
+        return Templates.products(service.findAll(0, 10), new Product(), message);
+    }
+
+    @GET
+    @Path("/paging")
+    @Produces(MediaType.TEXT_HTML)
+    public TemplateInstance getProductRows(@QueryParam("page") int page) {
+        List<Product> products = service.findAll(page * 10, 10);
+        return Templates.product_rows(products, page + 1, products.size() - 2);
     }
 
     @POST
@@ -45,7 +56,7 @@ public class Products {
     @Path("/edit/{id}")
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance editProduct(@PathParam("id") Long id) {
-        return Templates.products(service.findAll(0, 1000).toList(), service.findById(id), null);
+        return Templates.products(service.findAll(0, 10), service.findById(id), null);
     }
 
 }

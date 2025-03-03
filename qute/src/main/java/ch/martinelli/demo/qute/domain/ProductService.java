@@ -4,7 +4,6 @@ import jakarta.inject.Singleton;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Stream;
 
 @Singleton
 public class ProductService {
@@ -21,10 +20,15 @@ public class ProductService {
                 });
     }
 
-    public Stream<Product> findAll(int offset, int limit) {
+    public int count() {
+        return products.size();
+    }
+
+    public List<Product> findAll(int offset, int limit) {
         return products.stream()
                 .skip(offset)
-                .limit(limit);
+                .limit(limit)
+                .toList();
     }
 
     public Product findById(Long id) {

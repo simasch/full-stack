@@ -1,0 +1,25 @@
+{#for product in products}
+    {#if product_index == lastIndex}
+        <tr hx-get="/products/paging?size=10&page={nextPage}"
+            hx-trigger="revealed"
+            hx-swap="afterend">
+            <td>{product.name}</td>
+            <td>{product.description}</td>
+            <td>{product.price}</td>
+            <td>{product.stock}</td>
+            <td>
+                <a href="/products/edit/{product.id}">Edit</a>
+            </td>
+        </tr>
+    {#else}
+        <tr>
+            <td>{product.name}</td>
+            <td>{product.description}</td>
+            <td>{product.price}</td>
+            <td>{product.stock}</td>
+            <td>
+                <a href="/products/edit/{product.id}">Edit</a>
+            </td>
+        </tr>
+    {/if}
+{/for}

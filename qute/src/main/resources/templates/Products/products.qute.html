@@ -3,6 +3,7 @@
 <head>
     <title>Product Management</title>
     <link rel="stylesheet" href="/css/main.css">
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
 </head>
 <body>
 <h1>Products</h1>
@@ -57,17 +58,7 @@
     </tr>
     </thead>
     <tbody>
-    {#for prod in products}
-        <tr>
-            <td>{prod.name}</td>
-            <td>{prod.description}</td>
-            <td>${prod.price}</td>
-            <td>{prod.stock}</td>
-            <td>
-                <a href="/products/edit/{prod.id}">Edit</a>
-            </td>
-        </tr>
-    {/for}
+        {#include Products/product_rows products=products nextPage=1 lastIndex=9 /}
     </tbody>
 </table>
 </body>
