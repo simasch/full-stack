@@ -28,7 +28,8 @@
                     <p:commandButton value="Save" action="#{productBean.saveProduct()}"
                                      update="productForm, productTable"/>
                     <p:commandButton value="Cancel" action="#{productBean.cancelEdit()}"
-                                     update="productForm" rendered="#{productBean.editMode}"/>
+                                     update="productForm" rendered="#{productBean.editMode}"
+                                     style="margin-left: 0.5em;"/>
                 </f:facet>
             </h:panelGrid>
 
