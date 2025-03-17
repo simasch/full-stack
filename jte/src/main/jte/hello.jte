@@ -14,6 +14,9 @@
 </form>
 
 <p>${greeting}</p>
+
+<br/><br/>
+<a href="products">Products</a>
 </body>
 </html>
 

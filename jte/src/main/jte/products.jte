@@ -65,7 +65,7 @@
     </tr>
     </thead>
     <tbody>
-        @template.fragments.product-rows(products = products)
+    @template.fragments.product-rows(products = products)
     </tbody>
 </table>
 </body>
