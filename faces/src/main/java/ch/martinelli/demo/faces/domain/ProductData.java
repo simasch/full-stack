@@ -88,7 +88,7 @@ public class ProductData {
 
         // Add some features
         description.append("Features: ");
-        var featureCount = 1 + random.nextInt(3); // 1-3 features
+        int featureCount = 1 + random.nextInt(3); // 1-3 features
         for (int i = 0; i < featureCount; i++) {
             if (i > 0) description.append(", ");
             description.append(generateFeature(random));
