@@ -6,6 +6,7 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.grid.ColumnTextAlign;
 import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.grid.GridVariant;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
@@ -54,11 +55,12 @@ public class ProductView extends VerticalLayout {
         cancelButton.addClickListener(e -> clearForm());
 
         grid.setHeightFull();
+        grid.addThemeVariants(GridVariant.LUMO_WRAP_CELL_CONTENT);
 
-        grid.addColumn(Product::getName).setHeader("Name").setAutoWidth(true).setSortable(true).setSortProperty("name");
-        grid.addColumn(Product::getDescription).setHeader("Description").setAutoWidth(true).setSortable(true).setSortProperty("description");
-        grid.addColumn(Product::getPrice).setHeader("Price").setAutoWidth(true).setTextAlign(ColumnTextAlign.END).setSortable(true).setSortProperty("price");
-        grid.addColumn(Product::getStock).setHeader("Stock").setAutoWidth(true).setTextAlign(ColumnTextAlign.END).setSortable(true).setSortProperty("stock");
+        grid.addColumn(Product::getName).setHeader("Name").setAutoWidth(true).setFlexGrow(0).setSortable(true).setSortProperty("name");
+        grid.addColumn(Product::getDescription).setHeader("Description").setFlexGrow(1).setSortProperty("description");
+        grid.addColumn(Product::getPrice).setHeader("Price").setFlexGrow(0).setTextAlign(ColumnTextAlign.END).setSortable(true).setSortProperty("price");
+        grid.addColumn(Product::getStock).setHeader("Stock").setFlexGrow(0).setTextAlign(ColumnTextAlign.END).setSortable(true).setSortProperty("stock");
 
         grid.addItemClickListener(e -> editProduct(e.getItem()));
 
