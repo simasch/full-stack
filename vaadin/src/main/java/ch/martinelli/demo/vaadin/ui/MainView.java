@@ -23,7 +23,7 @@ public class MainView extends VerticalLayout {
         formLayout.setAlignItems(Alignment.BASELINE);
         add(formLayout, text);
 
-        RouterLink productsLink = new RouterLink("Products", ProductView.class);
+        var productsLink = new RouterLink("Products", ProductView.class);
         productsLink.addClassName(LumoUtility.Margin.Top.XLARGE);
         add(productsLink);
     }

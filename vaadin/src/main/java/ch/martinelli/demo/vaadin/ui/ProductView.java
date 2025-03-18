@@ -35,32 +35,51 @@ public class ProductView extends VerticalLayout {
 
         setHeightFull();
 
-        TextField nameField = new TextField("Name");
-        binder.forField(nameField).asRequired("Name is required").bind(Product::getName, Product::setName);
+        var nameField = new TextField("Name");
+        binder.forField(nameField)
+                .asRequired("Name is required")
+                .bind(Product::getName, Product::setName);
 
-        TextArea descriptionField = new TextArea("Description");
-        binder.forField(descriptionField).bind(Product::getDescription, Product::setDescription);
+        var descriptionField = new TextArea("Description");
+        binder.forField(descriptionField)
+                .bind(Product::getDescription, Product::setDescription);
 
-        BigDecimalField priceField = new BigDecimalField("Price");
-        binder.forField(priceField).asRequired("Price is required").bind(Product::getPrice, Product::setPrice);
+        var priceField = new BigDecimalField("Price");
+        binder.forField(priceField)
+                .asRequired("Price is required")
+                .bind(Product::getPrice, Product::setPrice);
 
-        IntegerField stockField = new IntegerField("Stock");
-        binder.forField(stockField).asRequired("Stock is required").bind(Product::getStock, Product::setStock);
+        var stockField = new IntegerField("Stock");
+        binder.forField(stockField)
+                .asRequired("Stock is required")
+                .bind(Product::getStock, Product::setStock);
 
-        FormLayout form = new FormLayout(nameField, descriptionField, priceField, stockField);
+        var form = new FormLayout(nameField, descriptionField, priceField, stockField);
 
-        Button saveButton = new Button("Save");
+        var saveButton = new Button("Save");
         saveButton.addClickListener(e -> saveProduct());
-        Button cancelButton = new Button("Cancel");
+        var cancelButton = new Button("Cancel");
         cancelButton.addClickListener(e -> clearForm());
 
         grid.setHeightFull();
         grid.addThemeVariants(GridVariant.LUMO_WRAP_CELL_CONTENT);
 
-        grid.addColumn(Product::getName).setHeader("Name").setAutoWidth(true).setFlexGrow(0).setSortable(true).setSortProperty("name");
-        grid.addColumn(Product::getDescription).setHeader("Description").setFlexGrow(1).setSortProperty("description");
-        grid.addColumn(Product::getPrice).setHeader("Price").setFlexGrow(0).setTextAlign(ColumnTextAlign.END).setSortable(true).setSortProperty("price");
-        grid.addColumn(Product::getStock).setHeader("Stock").setFlexGrow(0).setTextAlign(ColumnTextAlign.END).setSortable(true).setSortProperty("stock");
+        grid.addColumn(Product::getName)
+                .setHeader("Name")
+                .setAutoWidth(true).setFlexGrow(0)
+                .setSortable(true).setSortProperty("name");
+        grid.addColumn(Product::getDescription)
+                .setHeader("Description")
+                .setFlexGrow(1)
+                .setSortable(true).setSortProperty("description");
+        grid.addColumn(Product::getPrice)
+                .setHeader("Price")
+                .setFlexGrow(0).setTextAlign(ColumnTextAlign.END)
+                .setSortable(true).setSortProperty("price");
+        grid.addColumn(Product::getStock)
+                .setHeader("Stock")
+                .setFlexGrow(0).setTextAlign(ColumnTextAlign.END)
+                .setSortable(true).setSortProperty("stock");
 
         grid.addItemClickListener(e -> editProduct(e.getItem()));
 

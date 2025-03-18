@@ -36,7 +36,7 @@ public class Products {
     @Path("/paging")
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance getProductRows(@QueryParam("page") int page) {
-        List<Product> products = service.findAll(page * 10, 10);
+        var products = service.findAll(page * 10, 10);
         return Templates.product_rows(products, page + 1, products.size() - 2);
     }
 
@@ -45,7 +45,7 @@ public class Products {
     public Response saveProduct(@BeanParam Product product) {
         service.save(product);
 
-        UriBuilder uriBuilder = UriBuilder.fromPath("/products").queryParam("message", "Product saved successfully");
+        var uriBuilder = UriBuilder.fromPath("/products").queryParam("message", "Product saved successfully");
 
         return Response.status(Response.Status.SEE_OTHER)
                 .location(uriBuilder.build())

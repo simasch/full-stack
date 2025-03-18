@@ -47,13 +47,13 @@ public class ProductData {
 
     public static List<Product> createTestProducts(int count) {
         List<Product> products = new ArrayList<>(count);
-        Random random = new Random(42); // Fixed seed for reproducibility
+        var random = new Random(42); // Fixed seed for reproducibility
 
         for (long i = 1; i <= count; i++) {
-            String name = generateProductName(random);
-            String description = generateDescription(name, random);
-            BigDecimal price = generatePrice(random);
-            Integer stock = generateStock(random);
+            var name = generateProductName(random);
+            var description = generateDescription(name, random);
+            var price = generatePrice(random);
+            var stock = generateStock(random);
 
             products.add(new Product(i, name, description, price, stock));
         }
@@ -62,12 +62,12 @@ public class ProductData {
     }
 
     private static String generateProductName(Random random) {
-        String prefix = PRODUCT_PREFIXES[random.nextInt(PRODUCT_PREFIXES.length)];
-        String name = PRODUCT_NAMES[random.nextInt(PRODUCT_NAMES.length)];
+        var prefix = PRODUCT_PREFIXES[random.nextInt(PRODUCT_PREFIXES.length)];
+        var name = PRODUCT_NAMES[random.nextInt(PRODUCT_NAMES.length)];
 
         // 70% chance to have a suffix
         if (random.nextDouble() < 0.7) {
-            String suffix = PRODUCT_SUFFIXES[random.nextInt(PRODUCT_SUFFIXES.length)];
+            var suffix = PRODUCT_SUFFIXES[random.nextInt(PRODUCT_SUFFIXES.length)];
             return prefix + " " + name + " " + suffix;
         } else {
             return prefix + " " + name;
@@ -75,12 +75,12 @@ public class ProductData {
     }
 
     private static String generateDescription(String productName, Random random) {
-        String template = DESCRIPTION_TEMPLATES[random.nextInt(DESCRIPTION_TEMPLATES.length)];
+        var template = DESCRIPTION_TEMPLATES[random.nextInt(DESCRIPTION_TEMPLATES.length)];
 
-        String category = CATEGORIES[random.nextInt(CATEGORIES.length)];
+        var category = CATEGORIES[random.nextInt(CATEGORIES.length)];
         int wordCount = 5 + random.nextInt(15); // Between 5 and 20 additional words
 
-        StringBuilder description = new StringBuilder();
+        var description = new StringBuilder();
         description.append(String.format(template, productName.toLowerCase()));
         description.append(". ");
         description.append("Category: ").append(category);
@@ -88,7 +88,7 @@ public class ProductData {
 
         // Add some features
         description.append("Features: ");
-        int featureCount = 1 + random.nextInt(3); // 1-3 features
+        var featureCount = 1 + random.nextInt(3); // 1-3 features
         for (int i = 0; i < featureCount; i++) {
             if (i > 0) description.append(", ");
             description.append(generateFeature(random));

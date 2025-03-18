@@ -38,7 +38,7 @@ public class ProductService {
 
     private Comparator<Product> createProductComparator(List<QuerySortOrder> sortOrders) {
         if (sortOrders.isEmpty()) {
-            return (o1, o2) -> 0;
+            return (_, _) -> 0;
         } else {
             return Optional.ofNullable(FIELD_COMPARATORS.get(sortOrders.getFirst().getSorted()))
                     .map(comparator -> sortOrders.getFirst().getDirection() == SortDirection.DESCENDING
