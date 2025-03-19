@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Product Management</title>
+    <title>JTE Product Management</title>
     <link rel="stylesheet" href="/css/main.css">
     <script src="https://unpkg.com/htmx.org@1.9.10"></script>
 </head>

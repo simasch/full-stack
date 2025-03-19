@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Hello</title>
+    <title>Hello JTE</title>
 </head>
 <body>
 <form method="post" action="/hello">

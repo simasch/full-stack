@@ -19,7 +19,7 @@ import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
-@PageTitle("Product Management")
+@PageTitle("Vaadin Product Management")
 @Route("products")
 public class ProductView extends VerticalLayout {
 
