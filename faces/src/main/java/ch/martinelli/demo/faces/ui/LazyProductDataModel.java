@@ -2,7 +2,6 @@ package ch.martinelli.demo.faces.ui;
 
 import ch.martinelli.demo.faces.domain.Product;
 import ch.martinelli.demo.faces.domain.ProductService;
-import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
 import org.primefaces.model.FilterMeta;
 import org.primefaces.model.LazyDataModel;
@@ -14,8 +13,11 @@ import java.util.Map;
 @Singleton
 public class LazyProductDataModel extends LazyDataModel<Product> {
 
-    @Inject
-    ProductService productService;
+    private final ProductService productService;
+
+    public LazyProductDataModel(ProductService productService) {
+        this.productService = productService;
+    }
 
     @Override
     public int count(Map<String, FilterMeta> filterBy) {

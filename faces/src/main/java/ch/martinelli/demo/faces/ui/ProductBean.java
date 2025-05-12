@@ -5,7 +5,6 @@ import ch.martinelli.demo.faces.domain.ProductService;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
-import jakarta.inject.Inject;
 import jakarta.inject.Named;
 
 import java.io.Serializable;
@@ -14,13 +13,16 @@ import java.io.Serializable;
 @ViewScoped
 public class ProductBean implements Serializable {
 
-    @Inject
-    ProductService service;
-    @Inject
-    LazyProductDataModel lazyProductDataModel;
+    private final ProductService service;
+    private final LazyProductDataModel lazyProductDataModel;
 
     private Product product = new Product();
     private boolean editMode = false;
+
+    public ProductBean(ProductService service, LazyProductDataModel lazyProductDataModel) {
+        this.service = service;
+        this.lazyProductDataModel = lazyProductDataModel;
+    }
 
     public void saveProduct() {
         service.save(product);

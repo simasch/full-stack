@@ -4,7 +4,6 @@ import ch.martinelli.demo.qute.domain.Product;
 import ch.martinelli.demo.qute.domain.ProductService;
 import io.quarkus.qute.CheckedTemplate;
 import io.quarkus.qute.TemplateInstance;
-import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
@@ -15,8 +14,11 @@ import java.util.List;
 @Path("/products")
 public class Products {
 
-    @Inject
-    ProductService service;
+    private final ProductService service;
+
+    public Products(ProductService service) {
+        this.service = service;
+    }
 
     @CheckedTemplate
     public static class Templates {
