@@ -9,6 +9,22 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
+  - package-ecosystem: "maven"
+    directory: "/faces"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "maven"
+    directory: "/jte"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "maven"
+    directory: "/qute"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "maven"
+    directory: "/vaadin"
+    schedule:
+      interval: "daily"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
